@@ -1,7 +1,5 @@
 package restaurant.entities;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.ArrayList;
@@ -13,6 +11,7 @@ public class EMenu {
     public Integer page;
     public Integer size;
     public Integer total;
+
     @JsonInclude
     public List<EFood> foods;
 

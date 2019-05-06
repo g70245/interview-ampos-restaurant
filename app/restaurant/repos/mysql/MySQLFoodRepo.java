@@ -5,6 +5,7 @@ import io.ebean.ExpressionList;
 import io.ebean.PagedList;
 import models.Food;
 import models.Type;
+import play.libs.Json;
 import restaurant.entities.EFood;
 import restaurant.entities.EMenu;
 import restaurant.repos.FoodRepo;
@@ -69,6 +70,7 @@ public class MySQLFoodRepo implements FoodRepo {
         Optional<Food> foodHolder = Optional.ofNullable(Food.find.byId(eFood.id));
 
         foodHolder.ifPresent(food -> {
+            System.out.println(Json.toJson(eFood));
             food.name = eFood.name;
             food.description = eFood.description;
             food.image = eFood.image;
@@ -94,9 +96,6 @@ public class MySQLFoodRepo implements FoodRepo {
         newTypes.addAll(typeStrs.parallelStream()
                 .filter(ts -> !newTypeSet.contains(ts)).map(ts -> new Type(ts))
                 .collect(Collectors.toList()));
-
-        System.out.println(typeStrs);
-        System.out.println(newTypes);
 
         return newTypes;
     }
