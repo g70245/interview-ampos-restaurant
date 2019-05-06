@@ -1,4 +1,4 @@
-name := "interview-ampos-mini"
+name := "interview-ampos-restaurant"
 organization := "com.ampos"
 
 version := "1.0-SNAPSHOT"
@@ -11,6 +11,9 @@ libraryDependencies ++= Seq(
   javaJdbc,
   javaWs,
   guice,
-  "mysql" % "mysql-connector-java" % "8.0.8-dmr",
+  "mysql" % "mysql-connector-java" % "8.0.12",
   "org.flywaydb" %% "flyway-play" % "5.3.2"
 )
+
+lazy val myProject = (project in file("."))
+  .enablePlugins(PlayJava, PlayEbean)
