@@ -21,7 +21,7 @@ public class BillServiceRequest {
         public List<NewOrder> newOrders;
 
         @Valid
-        public List<UpdateOrder> updateOrders;
+        public List<UpdateOrder> orders;
     }
 
     public static class UpdateOrder {

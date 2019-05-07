@@ -63,7 +63,6 @@ public class MySQLBillRepo implements BillRepo {
 
                 if (!order.isNewOrder() && sameNameOrder.isPresent()) {
                     newBillOrders.add(sameNameOrder.get().updateQuantity(order.quantity));
-                    return;
                 }
             });
 

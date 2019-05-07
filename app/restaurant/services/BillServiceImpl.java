@@ -56,8 +56,8 @@ public class BillServiceImpl implements BillService{
         if (!Objects.isNull(request.newOrders))
             eBillOrders = createEBillOrderListFromNewOrders(request.newOrders);
 
-        if (!Objects.isNull(request.updateOrders))
-            eBillOrders.addAll(request.updateOrders.parallelStream()
+        if (!Objects.isNull(request.orders))
+            eBillOrders.addAll(request.orders.parallelStream()
                 .map(updateOrder -> new EBillOrder(updateOrder.foodName, updateOrder.quantity)).collect(Collectors.toList()));
 
         if (!billRepo.updateBill(new EBill(request.id, eBillOrders)).isUpdated) {

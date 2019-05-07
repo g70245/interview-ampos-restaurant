@@ -18,19 +18,20 @@ public class BillController extends AbstractController {
         return ok(billService.getBills());
     }
 
-    //@With(ExceptionHandler.class)
+    @With(ExceptionHandler.class)
     public Result getBill(Long id) {
 
         return ok(billService.getBill(id));
     }
 
-    //@With(ExceptionHandler.class)
+    @With(ExceptionHandler.class)
     public Result createBill(Http.Request request) {
         CreateRequest createRequest = bindRequestWith(request, CreateRequest.class);
 
         return created(billService.createBill(createRequest));
     }
 
+    @With(ExceptionHandler.class)
     public Result updateBill(Http.Request request, Long id) {
         UpdateRequest updateRequest = bindRequestWith(request, id, UpdateRequest.class);
         billService.updateBill(updateRequest);

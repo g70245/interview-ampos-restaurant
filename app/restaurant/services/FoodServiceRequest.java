@@ -14,17 +14,12 @@ public class FoodServiceRequest {
         public Integer page;
         public Integer size;
         public GetRequest(Map<String, String[]> queryStrings) {
-            try {
-                this.keyword = Optional.ofNullable(queryStrings.get("keyword"))
-                        .map(e -> e[0]).orElse(null);
-                this.page = Optional.ofNullable(queryStrings.get("page"))
-                        .map(e -> Integer.valueOf(e[0])).orElse(null);
-                this.size = Optional.ofNullable(queryStrings.get("size"))
-                        .map(e -> Integer.valueOf(e[0])).orElse(null);
-            } catch (Exception e) {
-                // TODO: 2019-05-06 Handle bad request here
-                throw e;
-            }
+            this.keyword = Optional.ofNullable(queryStrings.get("keyword"))
+                    .map(e -> e[0]).orElse(null);
+            this.page = Optional.ofNullable(queryStrings.get("page"))
+                    .map(e -> Integer.valueOf(e[0])).orElse(null);
+            this.size = Optional.ofNullable(queryStrings.get("size"))
+                    .map(e -> Integer.valueOf(e[0])).orElse(null);
         }
     }
 

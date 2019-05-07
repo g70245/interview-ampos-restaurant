@@ -43,7 +43,7 @@ public class EBill {
     public BigDecimal getTotalPrice() {
         return orders.parallelStream()
                 .map(EBillOrder::getOrderPrice)
-                .reduce((orderPrice1, orderPrice2) -> orderPrice1.add(orderPrice2)).orElse(BigDecimal.ZERO);
+                .reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
     }
 
     @JsonIgnore

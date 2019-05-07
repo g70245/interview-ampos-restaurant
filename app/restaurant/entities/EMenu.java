@@ -1,5 +1,6 @@
 package restaurant.entities;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.ArrayList;
@@ -38,15 +39,17 @@ public class EMenu {
         this.total = total;
     }
 
+    @JsonGetter
     public Integer getPage() {
-        if (page != null && page < 1)
+        if (!doesNeedPaginate())
             page = null;
         return page;
     }
 
+    @JsonGetter
     public Integer getSize() {
-        if (size != null && size < 1)
-            page = null;
-        return page;
+        if (!doesNeedPaginate())
+            size = null;
+        return size;
     }
 }
