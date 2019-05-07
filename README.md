@@ -5,7 +5,7 @@
 docker run --name ampos-mysql8.0 \
 	-p 3306:3306 \
 	-e MYSQL_ROOT_PASSWORD=ampos \
-    -e MYSQL_DATABASE=ampos \
+	-e MYSQL_DATABASE=ampos \
 	-e MYSQL_USER=ampos \
 	-e MYSQL_PASSWORD=ampos \
 	-d mysql:8.0 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
