@@ -158,18 +158,18 @@ GET localhost:9000/bills
 ###### Response Example
 ```json
 [
-	{
-      "id": 13,
-      "orderedTime": "05/07/2019 21:38:48",
-      "orders": [
-          {
-              "foodName": "Banana milkshake",
-              "unitPrice": 60,
-              "quantity": 3
-          }
-      ],
-      "totalPrice": 180
-	}
+    {
+        "id": 13,
+        "orderedTime": "05/07/2019 21:38:48",
+        "orders": [
+            {
+            "foodName": "Banana milkshake",
+            "unitPrice": 60,
+            "quantity": 3
+            }
+        ],
+        "totalPrice": 180
+    }
 ]
 ```
 #### 3. Getting bill information for check operation
@@ -200,13 +200,13 @@ PUT localhost:9000/bills/{billId}
 ###### Request Payload Example
 ```json
 {
-	"newOrders":[{"id":15, "quantity": 1}, {"id":19, "quantity": 3}],
-	"orders": [
-		{
-        "foodName": "Chocolate",
-        "quantity": 5
+    "newOrders":[{"id":15, "quantity": 1}, {"id":19, "quantity": 3}],
+    "orders": [
+        {
+            "foodName": "Chocolate",
+            "quantity": 5
         }
-	]
+    ]
 }
 ```
 * You can add any new order items as (1).
