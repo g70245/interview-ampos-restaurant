@@ -1,8 +1,6 @@
 package models;
 
 import io.ebean.Finder;
-import org.hibernate.validator.constraints.URL;
-import play.data.validation.Constraints;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,22 +9,18 @@ import java.util.List;
 @Entity
 public class Food extends BaseModel {
     @Id
-    @Constraints.Min(1)
     public Long id;
 
-    @Constraints.Required
+    @Column
     public String name;
 
-    @Constraints.Required
+    @Column
     public String description;
 
-    @URL
-    @Constraints.Required
+    @Column
     public String image;
 
     @Column(precision = 7, scale = 2)
-    @Constraints.Required
-    @Constraints.Min(0)
     public BigDecimal price;
 
     @ManyToMany(cascade = CascadeType.ALL)

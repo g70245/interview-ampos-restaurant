@@ -2,15 +2,17 @@ package restaurant.repos.mysql;
 
 import io.ebean.Ebean;
 import io.ebean.ExpressionList;
+import io.ebean.Model;
 import io.ebean.PagedList;
 import models.Food;
 import models.Type;
-import play.libs.Json;
+import restaurant.entities.EBillOrder;
 import restaurant.entities.EFood;
 import restaurant.entities.EMenu;
 import restaurant.repos.FoodRepo;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -70,7 +72,6 @@ public class MySQLFoodRepo implements FoodRepo {
         Optional<Food> foodHolder = Optional.ofNullable(Food.find.byId(eFood.id));
 
         foodHolder.ifPresent(food -> {
-            System.out.println(Json.toJson(eFood));
             food.name = eFood.name;
             food.description = eFood.description;
             food.image = eFood.image;
@@ -86,7 +87,22 @@ public class MySQLFoodRepo implements FoodRepo {
 
     @Override
     public void deleteFood(EFood eFood) {
-        Optional.ofNullable(Food.find.byId(eFood.id)).ifPresent(f -> f.delete());
+        Optional.ofNullable(Food.find.byId(eFood.id)).ifPresent(Model::delete);
+    }
+
+    @Override
+    public List<EBillOrder> getFoodDetailsForOrder(List<EBillOrder> billOrders) {
+        Map<Long, EBillOrder> billOrderMap = billOrders.parallelStream().collect(Collectors.toMap(o -> o.foodId, o -> o));
+
+        Set<Long> foodIds = billOrderMap.keySet();
+        Ebean.find(Food.class)
+                .where()
+                .in("id", foodIds)
+                .findList()
+                .parallelStream()
+                .forEach(food -> billOrderMap.get(food.id).setOrderDetails(food.name, food.price));
+
+        return billOrders;
     }
 
     private List<Type> getFoodTypes(Set<String> typeStrs) {
@@ -94,7 +110,7 @@ public class MySQLFoodRepo implements FoodRepo {
 
         Set<String> newTypeSet = newTypes.parallelStream().map(type -> type.name).collect(Collectors.toSet());
         newTypes.addAll(typeStrs.parallelStream()
-                .filter(ts -> !newTypeSet.contains(ts)).map(ts -> new Type(ts))
+                .filter(ts -> !newTypeSet.contains(ts)).map(Type::new)
                 .collect(Collectors.toList()));
 
         return newTypes;

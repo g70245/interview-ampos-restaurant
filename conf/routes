@@ -8,8 +8,14 @@
 # Map static resources from the /public folder to the /assets URL path
 # GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
-
-GET     /foods               controllers.FoodController.getMenu(request: Request)
+# Menu Management
+GET     /foods              controllers.FoodController.getFoods(request: Request)
 POST    /foods              controllers.FoodController.addFood(request: Request)
 PUT     /foods/:id          controllers.FoodController.updateFood(request: Request, id: Long)
 DELETE  /foods/:id          controllers.FoodController.deleteFood(request: Request, id: Long)
+
+# Bill Order Management
+GET     /bills              controllers.BillController.getBills
+GET     /bills/:id/check    controllers.BillController.getBill(id: Long)
+POST    /bills              controllers.BillController.createBill(request: Request)
+PUT     /bills/:id          controllers.BillController.updateBill(request: Request, id: Long)

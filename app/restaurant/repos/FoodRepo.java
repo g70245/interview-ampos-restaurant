@@ -1,5 +1,6 @@
 package restaurant.repos;
 
+import restaurant.entities.EBillOrder;
 import restaurant.entities.EFood;
 import restaurant.entities.EMenu;
 
@@ -10,4 +11,6 @@ public interface FoodRepo {
     EFood addFood(EFood eFood);
     EFood updateFood(EFood eFood);
     void deleteFood(EFood eFood);
+
+    List<EBillOrder> getFoodDetailsForOrder(List<EBillOrder> billOrders);
 }

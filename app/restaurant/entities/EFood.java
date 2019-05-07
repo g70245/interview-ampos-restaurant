@@ -19,6 +19,7 @@ public class EFood {
     public boolean isUpdated = false;
 
     public EFood(String name, String description, String image, BigDecimal price, Set<String> types) {
+
         this.name = name;
         this.description = description;
         this.image = image;
@@ -34,5 +35,10 @@ public class EFood {
 
     public EFood(Long id) {
         this.id = id;
+    }
+
+    @JsonIgnore
+    public boolean isUpdated() {
+        return isUpdated;
     }
 }

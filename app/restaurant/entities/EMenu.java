@@ -12,7 +12,6 @@ public class EMenu {
     public Integer size;
     public Integer total;
 
-    @JsonInclude
     public List<EFood> foods;
 
     public EMenu(Integer page, Integer size, String keyword) {

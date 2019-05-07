@@ -10,10 +10,9 @@ import java.util.List;
 public class Type extends BaseModel {
 
     @Id
-    @Constraints.Min(1)
     public Long id;
 
-    @Constraints.Required
+    @Column
     public String name;
 
     @ManyToMany(mappedBy = "types", cascade = CascadeType.ALL)

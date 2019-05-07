@@ -4,36 +4,33 @@ import actions.ExceptionHandler;
 import play.mvc.Http;
 import play.mvc.Result;
 import play.mvc.With;
-import restaurant.usecases.food.FoodEditor;
-import restaurant.usecases.food.FoodEditor.*;
-import restaurant.usecases.food.MenuGetter;
-import restaurant.usecases.food.MenuGetter.GetRequest;
+import restaurant.services.FoodService;
+import restaurant.services.FoodServiceRequest.*;
 
 import javax.inject.Inject;
 
 
 public class FoodController extends AbstractController {
-    @Inject MenuGetter menuGetter;
-    @Inject FoodEditor foodEditor;
+    @Inject private FoodService foodService;
 
     @With(ExceptionHandler.class)
-    public Result getMenu(Http.Request request) {
+    public Result getFoods(Http.Request request) {
         GetRequest getterRequest = new GetRequest(request.queryString());
 
-        return ok(menuGetter.getMenu(getterRequest));
+        return ok(foodService.getFoods(getterRequest));
     }
 
     @With(ExceptionHandler.class)
     public Result addFood(Http.Request request) {
         AddRequest editorRequest = bindRequestWith(request, AddRequest.class);
 
-        return created(foodEditor.addFood(editorRequest));
+        return created(foodService.addFood(editorRequest));
     }
 
     @With(ExceptionHandler.class)
     public Result updateFood(Http.Request request, Long id) {
         UpdateRequest editorRequest = bindRequestWith(request, id, UpdateRequest.class);
-        foodEditor.updateFood(editorRequest);
+        foodService.updateFood(editorRequest);
 
         return ok();
     }
@@ -41,7 +38,7 @@ public class FoodController extends AbstractController {
     @With(ExceptionHandler.class)
     public Result deleteFood(Http.Request request, Long id) {
         DeleteRequest editorRequest = bindRequestWith(request, id, DeleteRequest.class);
-        foodEditor.deleteFood(editorRequest);
+        foodService.deleteFood(editorRequest);
 
         return ok();
     }
