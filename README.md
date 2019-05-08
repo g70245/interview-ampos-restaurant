@@ -209,6 +209,6 @@ PUT localhost:9000/bills/{billId}
     ]
 }
 ```
-* You can add any new order items as (1).
+* The behavior of new addition of order items is like creating bill API.
 * If you don't want to update any existing order items, the same values need to be passed.
-* `foodName ` and `quantity ` are required keys.
+* `foodName ` is used as a part of primary key for snapshotting foods of the menu. So future modification of foods won't influence the result of the past bill.
