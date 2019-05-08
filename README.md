@@ -24,7 +24,7 @@ sbt run
 ## Task Lists
 - [x] Menu Management
 - [x] Bill Order Management
-- [ ] Exception Handling - Currently Server will only response `Status 400` where any exception occurs.
+- [ ] Exception Handling - Currently Server will only respond `Status 400` where any exception occurs.
 
 ## APIs Description
 ### Menu Management
