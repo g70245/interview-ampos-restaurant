@@ -1,3 +1,6 @@
+## Simple Class Diagram
+![Imgur](https://i.imgur.com/P2QmnH2.png)
+
 ## How To Start Service
 
 ##### Preparing MySQL Database
