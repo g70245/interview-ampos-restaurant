@@ -220,6 +220,6 @@ PUT localhost:9000/bills/{billId}
     ]
 }
 ```
-* Note: The behavior of new addition of order items is like creating bill API.
-* Note: If you don't want to update any existing order items, the same values need to be passed.
-* Note: `foodName` is used as a part of primary key for snapshotting foods of the menu. So future modification of foods won't influence the result of the past bill.
+* Note: The behavior of adding new order items is similar to the "Create Bill" API.
+* Note: To avoid updating existing order items, you must pass the same values as before.
+* Note: foodName is part of the primary key used for snapshotting menu items. This ensures that future modifications to menu items will not affect the results of past bills.
